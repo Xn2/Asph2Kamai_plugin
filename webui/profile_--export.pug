@@ -1,0 +1,26 @@
+//DATA//
+  scores: DB.Find(refid, { collection: 'music' })
+  profile: DB.FindOne(refid, { collection: 'profile' })
+  db: 
+-
+
+script(src="static/asset/js/asph2kamai.js") 
+
+.card
+    .card-header
+      p.card-header-title
+        span.icon
+          i.mdi.mdi-comment-question-outline
+        | Export scores to JSON file
+    .card-content
+        div
+          a(style='margin-right : 5px' href="data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(scores)) download="scores_" + profile.name +".json")
+            button.button.is-primary(type="button")
+              span Download scores
+          a(style='margin-right : 5px' href="static/asset/json/music_db.json" download="music_db.json")
+            button.button.is-primary(type="button")
+              span Download Music DB
+          a(id ='export' download="scores_" + profile.name +".json")
+            button.button.is-primary(type="button")
+              span Download Kamaitachi Export
+div(hidden id='data-pass') !{JSON.stringify(scores)}              
